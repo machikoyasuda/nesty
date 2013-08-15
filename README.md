@@ -16,3 +16,13 @@ Now for the nested part:
 
 The fastest way to do the nested routes is to grab all CRUD methods and copy it into the next controllers and change the controller names and variable names. Then, we'll start changing methods one-by-one to make sure that we're accessing embedded models, not just regular models.
 
+1. Delete "create"
+2. Update "update" - if there is no design, create the design WITHIN "update" method.
+3. Take out "head :not_found unless @design" out of private action
+4. Add else "head :not_found" in show, destroy
+5. Conclusion: In "update", if you found a design, update it. If it didn't find a design, create it.
+6. Must tell system what the ID is for new created designs. Add new field in design.rb: field: id, type:String model. Give all your models its own id field.
+7. Write method in ApplicationController to get_uuids(num). (0...num).to_a.map do |m| SecureRandom.uuid
+8. Add new route. get "uuid" => "site#uuids", get "uuid/:num" => "site#uuids"
+9. In SiteController, in def uuids, num = (params[:num] || "1").to_i. render :json => { uuids: get_uuids(num) }
+
