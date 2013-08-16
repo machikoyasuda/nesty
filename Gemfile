@@ -7,3 +7,6 @@ gem 'jquery-rails'
 gem 'jbuilder'
 gem 'bson_ext'
 gem 'mongoid', github: "mongoid/mongoid"
+gem 'rabl'
+gem 'oj'
+gem 'gon'
