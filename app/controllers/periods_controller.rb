@@ -64,7 +64,6 @@ class PeriodsController < ApplicationController
       head :not_found unless @period = @design.periods.find(params[:id])
     end
   end
-
   def period_params
     params.require(:period).permit(
       :name,
